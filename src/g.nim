@@ -6,7 +6,7 @@ G - Infinitybeond1's simple command line git wrapper
 
 Usage:
   g clone [-s | --ssh] [-y | --yes] <url>
-  g commit [-y | --yes] [<message>]
+  g commit [-y | --yes] [<message>] [<branch>] [<remote>]
   g (-h | --help)
   g (-v | --version)
 
@@ -22,4 +22,4 @@ let args = docopt(doc, version = "g v" & $version)
 if args["clone"]:
   clone(args["--yes"] or args["-y"], args["--ssh"] or args["-s"], $args["<url>"]) 
 elif args["commit"]:
-  commit(args["--yes"] or args["-y"], $args["<message>"])
+  commit(args["--yes"] or args["-y"], $args["<message>"], $args["<branch>"], $args["<remote>"])

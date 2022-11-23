@@ -1,7 +1,7 @@
-import os
+import os, strutils
 import ../shared
 
-proc commit*(yes: bool, message: string): void =
+proc commit*(yes: bool, message, branch, remote: string): void =
   if not(yes):
     discard execShellCmd("git add -n . -v | sed 's/add//g' | sed \"s/'//g\"")
     ask("Do you want to add the files listed above")
@@ -16,5 +16,7 @@ proc commit*(yes: bool, message: string): void =
   discard execShellCmd("git commit -m \"" & message & "\"")
   if not(yes):
     ask("Would you like to push your changes to the remote repo")
-  discard execShellCmd("git push")
+  var b = branch.replace("nil", "")
+  var r = remote.replace("nil", "")
+  discard execShellCmd("git push " & b & " " & r)
 
