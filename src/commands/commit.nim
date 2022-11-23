@@ -3,7 +3,7 @@ import ../shared
 
 proc commit*(yes: bool, message: string): void =
   if not(yes):
-    discard execShellCmd("git ls-files --others --exclude-standard")
+    discard execShellCmd("git add -n . -v | sed 's/add//g' | sed \"s/'//g\"")
     ask("Do you want to add the files listed above")
   discard execShellCmd("git add . -v")
   echo "Files added successfully"
