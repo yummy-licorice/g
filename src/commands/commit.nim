@@ -13,7 +13,7 @@ proc commit*(yes: bool, message: string): void =
   if not(yes):
     ask("Would you like to commit the added files with the message \"" &
         message & "\"")
-  discard execShellCmd("git commit -m " & message)
+  discard execShellCmd("git commit -m \"" & message & "\"")
   if not(yes):
     ask("Would you like to push your changes to the remote repo")
   discard execShellCmd("git push")
